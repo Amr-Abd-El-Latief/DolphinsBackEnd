@@ -1,0 +1,24 @@
+{
+  "services":{
+    "cloudantNoSQLDB": [
+      {
+        "credentials": {
+          "url":"https://6f9f3384-19a4-4fa3-bd05-7d2eda3bc17d-bluemix:51f65dda2276b1e37ebeadc8294dbcac132b85d6d9d5966db4701ddb8d644112@6f9f3384-19a4-4fa3-bd05-7d2eda3bc17d-bluemix.cloudant.com"
+        },
+        "label": "cloudantNoSQLDB"
+      }
+    ]
+  ,
+  
+  "watson_vision_combined": [
+  {
+      "credentials": {
+        "url": "https://gateway-a.watsonplatform.net/visual-recognition/api",
+        "api_key": "ee3756739796104373c135d73aba476a9dc21d2d"
+      },
+    "label": "watson_vision_combined",
+    "name": "Visual Recognition",
+    "plan": "free"
+ }]
+}
+}

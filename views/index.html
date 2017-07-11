@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>:: Dolphins Application Search ::</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/libs/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/libs/angular.min.js"></script>
+    <script src="js/app.js"></script>
+  </head>
+
+  <body ng-app="app">
+    <div class="container" ng-controller="mainController">        
+        <div class="col-sm-4 col-xs-12 well" ng-hide="isSearchResults">
+            <h2>Search Persons</h2>
+            <form>
+                <div class="form-group">
+                    <label for="SelectGender">Gender</label>
+                    <select class="form-control" id="SelectGender" ng-model="person.gender">
+                        <option value="MALE">Male</option>
+                        <option value="FEMALE">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="InputAge">Age</label>
+                    <input type="number" class="form-control" id="InputAge" min="0" max="200" ng-model="person.age" />
+                </div>
+                <div class="form-group">
+                    <label for="InputLocation">Location</label>
+                    <input type="text" class="form-control" id="InputLocation"  />
+                </div>
+                <button type="submit" class="btn btn-default" ng-click="searchDB()">Search</button>
+            </form>
+        </div>
+        <div class="col-sm-4 col-xs-12" ng-show="isSearchResults">
+            <h3>Search Results:</h3>
+            <table class="table table-bordered table-striped col-xs-12 col-sm-12">
+                <tr>
+                    <th>Max Age</th>
+                    <th>Image</th>
+                    <th>Match Percentage</th>
+                </tr>
+                <tr ng-repeat="sResult in searchResults">
+                    <td>
+                        {{sResult.watsonAnalysisResult.faces.images[0].faces[0].age.max}}
+                    </td>
+                    <td style="width: 70%;">
+                        <img src="https://dolphinsbackend.mybluemix.net/{{sResult.watsonAnalysisResult.faces.images[0].image}}"/>            
+                    </td>
+                    <td> 
+                        {{(sResult.watsonAnalysisResult.faces.images[0].faces[0].age.score * 100) | number:2}} %
+                    </td>
+              </tr>
+            </table>
+        </div>
+    </div>
+  </body>
+
+</html>
